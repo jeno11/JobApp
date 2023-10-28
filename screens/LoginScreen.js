@@ -1,7 +1,9 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { useNavigation } from '@react-navigation/native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
@@ -38,10 +40,11 @@ const LoginScreen = () => {
     }
 
   return (
-    <KeyboardAvoidingView
-        style={styles.container}
+    <KeyboardAwareScrollView
+        contentContainerStyle={styles.container}
         behavior="padding"
     >
+        <ImageBackground source={require('../assets/bg1.jpg')} resizeMode="cover" style={styles.image} opacity={0.4}>
       <View style={styles.inputContainer}>
         <TextInput
             placeholder="Email"
@@ -74,7 +77,8 @@ const LoginScreen = () => {
             <Text style={styles.buttonOutlineText}> Register </Text>
         </TouchableOpacity>
       </View>
-    </KeyboardAvoidingView>
+      </ImageBackground>
+    </KeyboardAwareScrollView>
   )
 }
 
@@ -84,10 +88,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        //alignItems: 'center',
+    },
+    image: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#000000'
     },
     inputContainer: {
-        width: '80%'
+        width: '80%',
+        marginStart: 40,
+        marginEnd: 40,
+        alignItems: 'stretch'
     },
     input: {
         backgroundColor: 'white',
@@ -97,10 +109,13 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     buttonContainer: {
-        width: '60%',
+       // width: '60%',
+        marginStart: 80,
+        marginEnd: 80,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 40,
+        opacity: 1
     },
     button: {
         backgroundColor: '#7fffd4',
@@ -118,10 +133,12 @@ const styles = StyleSheet.create({
         color: 'black',
         fontWeight: '700',
         fontSize: 16,
+        textAlign: 'center'
     },
     buttonOutlineText: {
         color: 'black',
         fontWeight: '700',
         fontSize: 16,
+        textAlign: 'center'
     },
 })
