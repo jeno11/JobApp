@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView, ImageBackground } from 'react-native'
 import React from 'react'
 import { auth } from '../firebase'
 import { useNavigation } from '@react-navigation/native'
@@ -16,12 +16,14 @@ const HomeScreen = () => {
     }
 
   return (
-    <View style={styles.container}>
-      <Text>Email: {auth.currentUser?.email}</Text>
-      <TouchableOpacity style={styles.button} onPress={handleSignOut}>
-        <Text style={styles.buttonText}>Sign Out</Text>
-      </TouchableOpacity>
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <ImageBackground source={require('../assets/bg7.jpg')} resizeMode='cover' style={styles.image} opacity={0.7}>
+        <Text style={styles.text}>Email: {auth.currentUser?.email}</Text>
+        <TouchableOpacity style={styles.button} onPress={handleSignOut}>
+          <Text style={styles.buttonText}>Sign Out</Text>
+        </TouchableOpacity>
+      </ImageBackground>
+    </ScrollView>
   )
 }
 
@@ -33,8 +35,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    image: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: '#000000'
+    },
+    text: {
+    color: 'black',
+    fontWeight: '400',
+    fontSize: 16,
+    textAlign: 'center'
+    },
     button: {
-        backgroundColor: '#7fffd4',
+        backgroundColor: '#afeeee',
         width: '60%',
         padding: 15,
         borderRadius: 10,

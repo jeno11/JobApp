@@ -1,4 +1,4 @@
-import { ImageBackground, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, KeyboardAvoidingView, ScrollView, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { useNavigation } from '@react-navigation/native'
@@ -44,40 +44,43 @@ const LoginScreen = () => {
         contentContainerStyle={styles.container}
         behavior="padding"
     >
-        <ImageBackground source={require('../assets/bg1.jpg')} resizeMode="cover" style={styles.image} opacity={0.4}>
-      <View style={styles.inputContainer}>
-        <TextInput
-            placeholder="Email"
-            value={email}
-            onChangeText={text => setEmail(text)}
-            style={styles.input}
-        />
+        <ImageBackground source={require('../assets/bg7.jpg')} resizeMode="cover" style={styles.image} opacity={0.7}>
+            <View >
+                <Image source={require('../assets/JOBlight.png')} style={styles.job} opacity={0.5}/>
+            </View>
+            <View style={styles.inputContainer}>
+                <TextInput
+                    placeholder="Email"
+                    value={email}
+                    onChangeText={text => setEmail(text)}
+                    style={styles.input}
+                />
 
-        <TextInput
-            placeholder="Password"
-            value={password}
-            onChangeText={text => setPassword(text)}
-            style={styles.input}
-            secureTextEntry
-        />
-      </View>
+                <TextInput
+                    placeholder="Password"
+                    value={password}
+                    onChangeText={text => setPassword(text)}
+                    style={styles.input}
+                    secureTextEntry
+                />
+            </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-            onPress={handleLogin}
-            style={styles.button}
-        >
-            <Text style={styles.buttonText}> Login </Text>
-        </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                    onPress={handleLogin}
+                style={styles.button}
+            >   
+                    <Text style={styles.buttonText}> Log in </Text>
+                </TouchableOpacity>
 
-        <TouchableOpacity
-            onPress={handleSignUp}
-            style={[styles.button, styles.buttonOutline]}
-        >
-            <Text style={styles.buttonOutlineText}> Register </Text>
-        </TouchableOpacity>
-      </View>
-      </ImageBackground>
+                <TouchableOpacity
+                    onPress={handleSignUp}
+                    style={[styles.button, styles.buttonOutline]}
+                >
+                    <Text style={styles.buttonOutlineText}> Sign up </Text>
+                </TouchableOpacity>
+            </View>
+        </ImageBackground>
     </KeyboardAwareScrollView>
   )
 }
@@ -95,11 +98,38 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#000000'
     },
+    job: {
+        width: '80%',
+        height: 110,
+        marginStart: 40,
+        marginEnd: 40,
+        marginBottom: 100,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000000'
+    },
     inputContainer: {
         width: '80%',
         marginStart: 40,
         marginEnd: 40,
         alignItems: 'stretch'
+    },
+    title: {
+        width: '80%',
+        marginStart: 40,
+        marginEnd: 40,
+        alignItems: 'stretch',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        marginBottom: 80
+    },
+    text1: {
+        color: 'white',
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        borderRadius: 10,
+        marginTop: 5,
     },
     input: {
         backgroundColor: 'white',
@@ -118,7 +148,7 @@ const styles = StyleSheet.create({
         opacity: 1
     },
     button: {
-        backgroundColor: '#7fffd4',
+        backgroundColor: '#afeeee',
         width: '100%',
         padding: 15,
         borderRadius: 10,
@@ -126,7 +156,7 @@ const styles = StyleSheet.create({
     buttonOutline: {
         backgroundColor: 'white',
         marginTop: 5,
-        borderColor: '#7fffd4',
+        borderColor: '#afeeee',
         borderWidth: 2,
     },
     buttonText: {
